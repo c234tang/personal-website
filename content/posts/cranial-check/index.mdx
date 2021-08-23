@@ -1,0 +1,80 @@
+---
+title: How We Created Cranial Check Using the Qoom Database
+date: 2021-01-07
+tags:
+  - Coding Projects
+banner: ./cranial-check-heading.png
+---
+
+Handling both the frontend and backend of a project at once can be tough. This was especially true for our Spring 2021 Creator Group project, Cranial Check, which was frontend-heavy. However, we were stoked to discover how much we could do with the Qoom database – which helped us code everything in the frontend! Continue reading to learn the coding magic behind our site!
+
+<br />
+
+### First of all... What is Cranial Check?
+
+Due to the widespread transition to online platforms and tools at work, school, and other daily activities, many people have begun to experience new or graver symptoms in the ocular/cranial areas. Cranial Check includes a symptom checker quiz and visual model that helps the user identify their symptoms and areas of pain. Our site then calculates a few possible diagnoses and provides resources for next steps.
+
+<img src="https://blog.qoom.io/content/images/size/w1600/2021/07/image.png" alt="Homepage" width="100%"/>
+
+We built Cranial Check with the hope to provide an easy tool for the general public to gain a better understanding of their symptoms and find possible treatments. As a self-diagnostic tool, it is not meant to replace a medical professional but rather be a preliminary symptom checker. We hope that it helps more people to be conscious of their health state and be actively involved in taking appropriate actions.
+
+<br />
+
+### Now, how exactly did we use the Qoom database?
+
+Qoom has three databases offered for users to use for their projects. In our case, we used the Login and Account databases. Qoom's easy-to-use auto-generated code allowed us to integrate a login system into our home page.
+
+`<form action='/~/spring2021/cranial-check/login' method='POST' enctype='multipart/form-data' autocomplete="on"></form>`
+
+We also wanted to transfer and use data from the quiz into the user's account, which is where the account database comes into play. Adding the generated code onto the quiz form allowed for the symptoms and their values to be redirected to the account page.
+
+`<form action="/~/spring2021/cranial-check/account/data" method="post"></form>`
+
+So how exactly did we take the raw data from the quiz and format it into table elements? In both cases, we were able to display our data using curly brackets in the HTML pages, which act as a placeholder for the data when it's redirected to that page. We then used Javascript to take the text content of these elements, converted the string of symptoms into an array, and looped through the array (backwards iteration). Finally, we used DOM manipulation to create new elements and format each array element onto there.
+
+```js
+var dateList = document.getElementsByClassName("date-list");
+var ageList = document.getElementsByClassName("age-list");
+var symptomsList = document.getElementsByClassName("symptoms-list");
+var conditionsList = document.getElementsByClassName("conditions-list");
+
+//removing all the dates, ages, and symptoms but the most recent
+if (symptomsList.length > 1) {
+	//"backward iteration" aka reverse loop
+	for (var i = symptomsList.length - 2; i >= 0; i--) {
+		symptomsList[i].remove();
+		ageList[i].remove();
+		dateList[i].remove();
+	}
+}
+
+//turning symptoms div element into array
+var symptoms = symptomsList[0].textContent;
+var symptoms_array = symptoms.split(",");
+var displaySymptoms = document.getElementById("symptoms-display");
+
+//creating unordered list
+var list = document.createElement("ul");
+for (var i = 0; i < symptoms_array.length; i++) {
+	var listSymptom = document.createElement("li");
+	var listContent = document.createTextNode(symptoms_array[i]);
+	listSymptom.appendChild(listContent);
+	list.appendChild(listSymptom);
+}
+
+//appending to table and taking out array list
+displaySymptoms.appendChild(list);
+symptomsList[0].style.display = "none";
+```
+<br />
+
+<img src="https://blog.qoom.io/content/images/size/w1600/2021/07/Screen-Shot-2021-07-02-at-11.31.22-AM.png" alt="Database" width="100%"/>
+
+<br />
+<br />
+
+### Closing Thoughts
+
+With Qoom's databases, we were able to expand our project extensively. Originally, we only thought of having a quiz and a results page, but using the database we were able to incorporate accounts that allowed the user to access and filter through all their past entries. We hope to continue growing Cranial Check during the Summer 2021 Qoom Creator cohort!
+
+Interested in learning more about Cranial Check? Click here to try it yourself: [https://www.carissatang.com/~/spring2021/cranial-check](https://www.carissatang.com/~/spring2021/cranial-check)!

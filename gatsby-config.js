@@ -8,7 +8,9 @@ module.exports = {
     // You can overwrite values here that are used for the SEO component
     // You can also add new values here to query them like usual
     // See all options: https://github.com/LekoArts/gatsby-themes/blob/master/themes/gatsby-theme-minimal-blog/gatsby-config.js
-    siteTitleAlt: `Minimal Blog - Gatsby Theme`,
+    siteTitle: 'Carissa Tang',
+    siteTitleAlt: `Carissa Tang`,
+    siteUrl: `https://carissatang.com`,
   },
   plugins: [
     {
@@ -17,22 +19,26 @@ module.exports = {
       options: {
         navigation: [
           {
-            title: `Blog`,
-            slug: `/blog`,
-          },
-          {
             title: `About`,
             slug: `/about`,
+          },
+          {
+            title: `Projects`,
+            slug: `/projects`,
+          },
+          {
+            title: `Blog`,
+            slug: `/blog`,
           },
         ],
         externalLinks: [
           {
-            name: `Twitter`,
-            url: `https://twitter.com/lekoarts_de`,
+            name: `GitHub`,
+            url: `https://github.com/carissa-tang`,
           },
           {
-            name: `Homepage`,
-            url: `https://www.lekoarts.de?utm_source=minimal-blog&utm_medium=Starter`,
+            name: `LinkedIn`,
+            url: `https://www.linkedin.com/in/carissatang/`,
           },
         ],
       },
@@ -51,6 +57,10 @@ module.exports = {
             name: `IBM Plex Sans`,
             file: `https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&display=swap`,
           },
+          {
+            name: `Urbanist`,
+            file: `https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,400;0,700;1,400;1,700&family=Urbanist:wght@200;300;400;500;600;700&display=swap'`,
+          },
         ],
       },
     },
@@ -64,14 +74,18 @@ module.exports = {
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: `minimal-blog - @lekoarts/gatsby-theme-minimal-blog`,
-        short_name: `minimal-blog`,
-        description: `Typography driven, feature-rich blogging theme with minimal aesthetics. Includes tags/categories support and extensive features for code blocks such as live preview, line numbers, and code highlighting.`,
+        name: `Carissa Tang`,
+        short_name: `carissa tang`,
         start_url: `/`,
         background_color: `#fff`,
         theme_color: `#6B46C1`,
         display: `standalone`,
         icons: [
+          {
+            src: `/favicon-32x32`,
+            sizes: `32x32`,
+            type: `image/png`,
+          },
           {
             src: `/android-chrome-192x192.png`,
             sizes: `192x192`,

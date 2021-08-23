@@ -1,0 +1,35 @@
+import { useState, useEffect } from "react";
+import Typist from "react-typist";
+
+export default function TypingHeader() {
+  const [count, setCount] = useState(1);
+  useEffect(() => {
+    setCount(1);
+  }, [count]);
+  function highlight(e) {
+      e.target.style.backgroundColor = "hsl(50, 100%, 80%)";
+      e.target.style.color = "black";
+      e.target.style.zIndex = "-1";
+  }
+  return (
+    <div style={{fontSize: "2.5em"}}>
+      {count ? (
+        <Typist avgTypingDelay={50} onTypingDone={() => setCount(0)}>
+          <span>Hello 👋 ! I'm <span onMouseOver={highlight} style={{color: "#9370DB"}}>Carissa Tang.</span></span>
+          <Typist.Backspace avgTypingDelay={20} count={13} delay={2000} />
+          <span onMouseOver={highlight} style={{color: "#9370DB"}}>an incoming UWaterloo student.</span>
+          <Typist.Backspace avgTypingDelay={20} count={30} delay={2000} />
+          <span onMouseOver={highlight} style={{color: "#9370DB"}}>an aspiring computer scientist.</span>
+          <Typist.Backspace avgTypingDelay={20} count={31} delay={2000} />
+          <span onMouseOver={highlight} style={{color: "#9370DB"}}>a biotech enthusiast.</span>
+          <Typist.Backspace avgTypingDelay={20} count={21} delay={2000} />
+          <span onMouseOver={highlight} style={{color: "#9370DB"}}>an aspiring computer scientist.</span>
+          <Typist.Delay ms={3000} />
+        </Typist>
+      ) : (
+        ""
+      )}
+      <p>Thanks for stopping by :) . Have a look around to see what I've been up to lately.</p>
+    </div>
+  );
+}
